@@ -1,0 +1,35 @@
+package org.primepro.librarymanagement.services;
+
+import java.util.List;
+
+import org.primepro.librarymanagement.entities.Library;
+import org.primepro.librarymanagement.repository.LibraryRepository;
+
+public class LibraryCreateServiceImpl implements LibraryCreateService{
+	 private LibraryRepository libraryRepository;
+     
+	  
+	public LibraryCreateServiceImpl(LibraryRepository libraryRepository) {
+		super();
+		this.libraryRepository = libraryRepository;
+	}
+
+	@Override
+	public String addSingleLibrary(Library library) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public String addAllLibraries(List<Library> libraries) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Library addLibraryWithSaveAndFlush(Library library) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}

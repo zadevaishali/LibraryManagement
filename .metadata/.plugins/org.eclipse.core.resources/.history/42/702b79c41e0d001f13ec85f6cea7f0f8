@@ -1,0 +1,35 @@
+package org.primepro.librarymanagement.services;
+
+
+import org.primepro.librarymanagement.repository.LibraryRepository;
+
+public class LibraryCountServiceImpl implements LibraryCountService{
+
+	private LibraryRepository libraryRepository;
+
+    
+	public LibraryCountServiceImpl(LibraryRepository libraryRepository) {
+		super();
+		this.libraryRepository = libraryRepository;
+	}
+
+	@Override
+	public long countLibraries() {
+		return libraryRepository.count();
+
+	}
+
+	@Override
+	public long countLibariesWithZeroBooks() {
+		Library library=new Library();
+		 library.setCommaSeperatedBookNames("");
+		 ExampleMatcher matcher=Examplematcher.matching().withMatcher("commaSeperatedBppkNames",GenericPropertyMatchers.exact()).wthIgnorePaths("id","name");
+
+		Example<Library>example.of(library,matcher);
+
+
+		 return libraryRepository.count(example);
+
+	}
+
+}

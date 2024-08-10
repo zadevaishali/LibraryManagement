@@ -1,0 +1,18 @@
+package org.primepro.librarymanagement;
+
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+public class Library 
+{
+	private Long id;
+	private String name;
+	private String commaSeperatedBookNames;
+
+
+	
+}

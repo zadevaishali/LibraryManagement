@@ -1,0 +1,25 @@
+package org.primepro.librarymanagement.services;
+
+import org.primepro.librarymanagement.repository.LibraryRepository;
+
+public class LibraryExistServiceImpl implements LibraryExistService {
+
+	private LibraryRepository libraryRepository;
+	
+	public LibraryExistServiceImpl(LibraryRepository libraryRepository) {
+		super();
+		this.libraryRepository = libraryRepository;
+	}
+
+	@Override
+	public boolean checkLibraryExistsById(int id) {
+		return libraryRepository.existsById((long) id);
+	}
+
+	@Override
+	public boolean checkLibraryExistsByExample(String commaSeperatedBookNames) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+}

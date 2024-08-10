@@ -1,0 +1,38 @@
+package org.primepro.librarymanagement.services;
+
+
+import org.primepro.librarymanagement.entities.Library;
+import org.primepro.librarymanagement.repository.LibraryRepository;
+import org.springframework.data.domain.Example;
+import org.springframework.data.domain.ExampleMatcher;
+
+public class LibraryCountServiceImpl implements LibraryCountService{
+
+	private LibraryRepository libraryRepository;
+
+    
+	public LibraryCountServiceImpl(LibraryRepository libraryRepository) {
+		super();
+		this.libraryRepository = libraryRepository;
+	}
+
+	@Override
+	public long countLibraries() {
+		return libraryRepository.count();
+
+	}
+
+	@Override
+	public long countLibariesWithZeroBooks() {
+		Library library=new Library();
+		 library.setCommaSeperatedBookNames("");
+		 ExampleMatcher matcher=ExampleMatcher.matching().withMatcher("commaSeperatedBppkNames",GenericPropertyMatchers.exact()).wthIgnorePaths("id","name");
+
+		Example<Library>example.of(library,matcher);
+
+
+		 return libraryRepository.count(example);
+
+	}
+
+}

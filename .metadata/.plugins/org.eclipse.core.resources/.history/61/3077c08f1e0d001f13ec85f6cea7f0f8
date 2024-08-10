@@ -1,0 +1,27 @@
+package org.primepro.librarymanagement.services;
+
+import org.primepro.librarymanagement.repository.LibraryRepository;
+
+public class LibraryCountServiceImpl implements LibraryCountService{
+
+	private LibraryRepository libraryRepository;
+
+    
+	public LibraryCountServiceImpl(LibraryRepository libraryRepository) {
+		super();
+		this.libraryRepository = libraryRepository;
+	}
+
+	@Override
+	public long countLibraries() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public long countLibariesWithZeroBooks() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+}

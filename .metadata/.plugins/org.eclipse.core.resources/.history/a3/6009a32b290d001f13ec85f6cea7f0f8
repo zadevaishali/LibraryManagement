@@ -1,0 +1,129 @@
+package org.primepro.librarymanagement.services;
+
+import java.util.List;
+import java.util.Optional;
+
+import org.primepro.librarymanagement.entities.Library;
+import org.primepro.librarymanagement.repository.LibraryRepository;
+import org.springframework.data.domain.Example;
+import org.springframework.data.domain.ExampleMatcher;
+import org.springframework.data.domain.ExampleMatcher.GenericPropertyMatchers;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.domain.Sort.Direction;
+
+public class LibraryReadServiceImpl implements LibraryReadService
+{
+	private LibraryRepository libraryRepository;
+
+	
+	public LibraryReadServiceImpl(LibraryRepository libraryRepository) {
+		super();
+		this.libraryRepository = libraryRepository;
+	}
+
+	@Override
+	public List<Library> getAllLibraries() {
+		 return libraryRepository.findAll();
+
+	}
+
+	@Override
+	public List<Library> getAllLibrariesWithNoBooks() {
+		 Library library=new Library();
+		 library.setCommaSeperatedBookNames("");
+		 ExampleMatcher matcher=ExampleMatcher.matching().withMatcher("commaSeperatedBppkNames",GenericPropertyMatchers.exact()).withIgnorePaths("id","name");
+
+		Example<Library>example=Example.of(library,matcher);
+
+
+		 return libraryRepository.findAll(example);
+
+	}
+
+	@Override
+	public Page<Library> getAllLibrary() {
+		Pageable pageable=PageRequest.of(0,3);
+		  return libraryRepository.findAll(pageable);
+	}
+
+	@Override
+	public Page<Library> getLibrariesCustomPage(int pageNumber, int noOfRecordsPerPage) {
+		Pageable pageable=PageRequest.of(pageNumber,noOfRecordsPerPage);
+		  return libraryRepository.findAll(pageable);
+
+	}
+
+	@Override
+	public List<Library> getLibrariesWithLatestAddedOrder() {
+		return libraryRepository.findAll(Sort.by(Direction.DESC,"id"));
+
+	}
+
+	@Override
+	public Page<Library> getLibrariesPagedAndSortedByNameWithTheseBooks(String commaSeperatedBookNames) {
+		 Library library=new Library();
+		 library.setCommaSeperatedBookNames(commaSeperatedBookNames);//probe object
+		 ExampleMatcher matcher=ExampleMatcher.matching().withMatcher("commaSeperatedBppkNames",GenericPropertyMatchers.exact()).withIgnorePaths("id","name");
+
+		Example<Library>example=Example.of(library,matcher);
+		Pageable pageable=PageRequest.of(0, 3, Sort.by("name"));
+		return libraryRepository.findAll(example,pageable);
+
+	}
+
+	
+
+	@Override
+	public Page<Library> getLibraryCustomPagedandSortedWithDefaultOrderByNameAndWithTheseBooks(int pageNumber,
+			int noOfPages, String commaSeperatedBookNames) {
+		Library library=new Library();
+		 library.setCommaSeperatedBookNames(commaSeperatedBookNames);//probe object
+		 ExampleMatcher matcher=ExampleMatcher.matching().withMatcher("commaSeperatedBppkNames",GenericPropertyMatchers.exact()).wthIgnorePaths("id","name");
+
+		Example<Library>example=Example.of(library,matcher);
+		Pageable pageable=PageRequest.of(pageNumber, noOfPages, Sort.by("name"));
+		return libraryRepository.findAll(example,pageable);
+
+	}
+
+	@Override
+	public List<Library> getLibrariesSortedByNameWithTheseBooks(String commaSeperatedBookNames) {
+		 Library library=new Library();
+		 library.setCommaSeperatedBookNames(commaSeperatedBookNames);//probe object
+		 ExampleMatcher matcher=ExampleMatcher.matching().withMatcher("commaSeperatedBppkNames",GenericPropertyMatchers.exact()).withIgnorePaths("id","name");
+
+		Example<Library>example=Example.of(library,matcher);
+
+		return libraryRepository.findAll(example,Sort.by(Name));
+
+
+	}
+
+	@Override
+	public List<Library> getLibrariesByIds(List<Integer> ids) {
+		 return libraryRepository.findAllById(ids);
+
+	}
+
+	@Override
+	public Optional<Library> getLibraryByID(Integer id) {
+		 return libraryRepository.findById(id);
+	}
+
+	
+
+	@Override
+	public Optional<Library> getLibraryWithTheseBooksString(String commaSeperatedBookNames) {
+		 Library library=new Library();
+		 library.setCommaSeperatedBookNames(commaSeperatedBookNames);//probe object
+		 ExampleMatcher matcher=ExampleMatcher.matching().withMatcher("commaSeperatedBppkNames",GenericPropertyMatchers.exact()).withIgnorePaths("id","name");
+
+		Example<Library>example=Example.of(library,matcher);
+
+		return libraryRepository.findOne(example);
+
+  
+}

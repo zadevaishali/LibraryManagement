@@ -1,0 +1,5 @@
+package org.primepro.librarymanagement.services;
+
+public interface LibraryReadService {
+
+}

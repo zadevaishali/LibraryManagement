@@ -1,0 +1,45 @@
+package org.primepro.librarymanagement.services;
+
+import java.util.List;
+
+import org.primepro.librarymanagement.entities.Library;
+
+public class LibraryDeleteServiceImpl implements LibraryDeleteService{
+
+	@Override
+	public String deleteOneLibrary(Library library) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public String PruneTable() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public String deleteAllThese(List<Library> libraries) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public String deleteAllInBatch() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public String deleteLibraryById(int id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public String deleteAllTheseInBatch(List<Library> libraries) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}
